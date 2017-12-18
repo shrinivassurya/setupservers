@@ -84,4 +84,3 @@ Create another wp config file as existing wp-config file
 	define('DB_PASSWORD', '');
 
 
-# setupservers
