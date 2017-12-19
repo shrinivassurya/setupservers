@@ -5,11 +5,12 @@
 # ----Installing PHP ----
 
 
-sudo apt-get install php libapache2-mod-php php-mcrypt
-sudo apt-get install php-mysql
+sudo apt-get install php-mcrypt php-mysql
+sudo apt-get install libapache2-mod-fastcgi php5-fpm
 
 
-# ----Installing mysql database----
+
+# ----Installing MySQL----
 
 sudo apt-get install mysql-server
 sudo /usr/bin/mysql_secure_installation
@@ -29,7 +30,7 @@ HOST_ENTRY=$varname
 
 sudo sh -c "echo 127.0.0.1 $HOST_ENTRY >> /etc/hosts"
 
-#domainname=echo $HOST_NAME | awk -F. '{print $1}';
+domainname=echo $HOST_NAME | awk -F. '{print $1}';
 
 #----Creating Database for wordpress
 
@@ -37,10 +38,14 @@ echo "------Execute following steps"
 
 echo "1 - Enter the Mysql Password and press Enter"
 echo
-echo "2 - Execute Command: SET PASSWORD=PASSWORD('');"
+echo "2 - CREATE DATBASE yourdomain name_db that recently you have inputted don't use .com while creating database it doesn't allow to create database. Exp: It will not allow to create example.com_db; Use to create database using Exp: CREATE DATABASE example_db"
 echo
-echo "3 - CREATE DATBASE yourdomainname_db; Exp: CREATE DATABASE example_db"
-echo "Exit from mysql"
+echo "3 - Give Permission for created database for wordpress GRANT ALL ON example_db.* to 'root'@'localhost' IDENTIFIED BY 'your password';"
+echo
+echo "4 - Flush Privliges using Exp: FLUSH PRIVILIGES;"
+echo
+echo "5 - Exit from mysql"
+echo
 
 mysql -u root -p
 
@@ -50,8 +55,8 @@ sudo service mysql restart
 cd ~/Downloads/
 sudo apt-get install unzip
 
-#sudo wget http://wordpress.org/latest.zip
-#unzip latest.zip
+sudo wget http://wordpress.org/latest.zip
+unzip latest.zip
 
 sudo mkdir -p /var/www
 
